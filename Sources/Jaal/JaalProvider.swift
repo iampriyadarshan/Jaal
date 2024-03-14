@@ -15,7 +15,7 @@ public protocol APIClient {
   ///   - urlSession: `URLSession`
   ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `DispatchQueue.main`
   ///   - type: Decodable Object Type
-  @available(macOS 10.15, *)
+  @available(iOS 13.0,macOS 10.15, *)
   func request<D, S>(
     target: Target,
     urlSession: URLSession,
@@ -27,7 +27,7 @@ public protocol APIClient {
 
 
 public class JaalProvider<Target: TargetType>: APIClient {
-  @available(macOS 10.15, *)
+  @available(iOS 13.0,macOS 10.15, *)
   public func request<D, S>(
     target: Target,
     urlSession: URLSession = URLSession.shared,
