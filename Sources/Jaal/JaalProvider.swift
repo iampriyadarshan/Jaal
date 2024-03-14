@@ -27,6 +27,9 @@ public protocol APIClient {
 
 
 public class JaalProvider<Target: TargetType>: APIClient {
+  
+  public init() {}
+  
   @available(iOS 13.0,macOS 10.15, *)
   public func request<D, S>(
     target: Target,
