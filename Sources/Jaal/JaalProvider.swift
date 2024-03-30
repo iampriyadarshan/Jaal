@@ -59,7 +59,8 @@ public class JaalProvider<Target: TargetType>: APIClient {
           throw error
         }
         print(request)
-        print(dataToDictionary(data: data) ?? [:])
+//        print(dataToDictionary(data: data) ?? [:])
+        printDataAsPrettyJSON(data)
         return data
       }
       .decode(type: type.self, decoder: jsonDecoder)
@@ -167,3 +168,16 @@ func dataToDictionary(data: Data) -> [String: Any]? {
     return nil
   }
 }
+
+func printDataAsPrettyJSON(_ data: Data) {
+  do {
+    let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+    let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+    if let jsonString = String(data: jsonData, encoding: .utf8) {
+      print(jsonString)
+    }
+  } catch {
+    print("Error: Unable to convert data to JSON - \(error)")
+  }
+}
+
